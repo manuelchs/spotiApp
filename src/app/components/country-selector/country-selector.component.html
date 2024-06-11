@@ -1,0 +1,8 @@
+<div class="main-select" [ngClass]="{'with-flag': countrySelected}">
+    <img *ngIf="countrySelected" class="toggle-animation" [src]="countrySelected.flag" alt="">
+    <select [(ngModel)]="countryCode" (change)="changeSelector($event)">
+        <option value="" selected>Elige un país</option>
+        <option *ngFor="let country of countries" [value]="country.code">{{ country.name }}</option>
+    </select>
+    <div></div>
+</div>

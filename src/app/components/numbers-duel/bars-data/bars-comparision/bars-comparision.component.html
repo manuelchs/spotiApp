@@ -1,0 +1,13 @@
+<div class="bars-comparision-wrapper">
+    <h3>{{ comparision.title }}</h3>
+    <div class="tracks-wrapper">
+        <div class="track-item home" [ngStyle]="{'width': getTrackWidth('home')}">
+            <div class="track" [ngStyle]="{'background-color': homeColor}"></div>
+            <div class="value-track" [ngStyle]="{'color': homeColor}">{{ comparision.home.label }}</div>
+        </div>
+        <div class="track-item away" [ngStyle]="{'width': getTrackWidth('away')}">
+            <div class="track" [ngStyle]="{'background-color': awayColor}"></div>
+            <div class="value-track" [ngStyle]="{'color': awayColor}">{{ comparision.away.label }}</div>
+        </div>
+    </div>
+</div>

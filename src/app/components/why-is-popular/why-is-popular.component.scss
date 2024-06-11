@@ -1,0 +1,18 @@
+@import 'src/scss/vars';
+
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media #{$ipad} {
+        flex-direction: column;
+    }
+}
+
+.charts-section {
+    .chart {
+        h3 {
+            margin-bottom: 1rem;
+        }
+    }
+}

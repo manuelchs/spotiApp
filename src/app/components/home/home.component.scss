@@ -1,0 +1,16 @@
+@import 'src/scss/colors';
+
+ol {
+    list-style-position: outside;
+    padding-left: 50px;
+    a {
+        color: $mainColor;
+        text-decoration: underline;
+    }
+    li {
+        margin-bottom: 1rem;
+    }
+    p {
+        font-size: 14px;
+    }
+}

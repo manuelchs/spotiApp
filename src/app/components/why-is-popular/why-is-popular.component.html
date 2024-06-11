@@ -1,0 +1,21 @@
+<div class="content-wrapper">
+    <div class="header-section">
+        <div class="title-section">
+            <app-main-title title="¿Por qué es popular?" icon="star"></app-main-title>
+            <p>Elige una playlist o un album y descubre si hay similitudes entre los tracks más populares.</p>
+        </div>
+        <app-item-handler *ngIf="item" [item]="item" (clearItem)="item = undefined; idItem = undefined;"></app-item-handler>
+    </div>
+    <app-search-albums-playlists *ngIf="!idItem" (idItem)="getItem($event)"></app-search-albums-playlists>
+
+    <div *ngIf="idItem" class="charts-section">
+        <div class="chart" style="width: 100%">
+            <h3>Relación: Bailabilidad / Popularidad</h3>
+            <canvas id="danceChart"></canvas>
+        </div>
+        <div class="chart" style="width: 100%">
+            <h3>Relación: Volumen / Popularidad</h3>
+            <canvas id="loudnessChart"></canvas>
+        </div>
+    </div>
+</div>

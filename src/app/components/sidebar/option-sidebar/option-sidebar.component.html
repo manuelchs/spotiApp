@@ -1,0 +1,4 @@
+<a [routerLink]="'/' + link" routerLinkActive="active" [routerLinkActiveOptions]="link === '' ? { exact: true } : { exact: false }"class="option-sidebar">
+    <i class="fal fa-{{ icon }}"></i>
+    <span>{{ title }}</span>
+</a>

@@ -1,0 +1,68 @@
+@import 'src/scss/colors';
+@import 'src/scss/vars';
+
+
+.song-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 0.5rem;
+
+    .song-info {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        .img-album {
+            width: 64px;
+            height: 64px;
+            background-color: $lightGray2;
+            margin-right: 1rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            flex-shrink: 0;
+            img {
+                flex-shrink: 0;
+            }
+        }
+    }
+
+    .spotify-link {
+        position: relative;
+        margin-left: 1rem;
+        transition: all .2s;
+        span, i {
+            color: $mainColor;
+        }
+        span {
+            background-color: white;
+            display: block;
+            position: relative;
+            z-index: 2;
+            font-size: $px-12;
+            white-space: nowrap;
+        }
+        i {
+            position: absolute;
+            left: calc(100% - 0.5rem);
+            top: 0px;
+            z-index: 1;
+            transition: all .2s;
+        }
+    }
+
+    &:hover {
+        background-color: $lightGray1;
+        .spotify-link {
+            padding-right: 12px;
+            span {
+                text-decoration: underline;
+                background-color: $lightGray1;
+            }
+            i {
+                left: calc(100% - 8px);
+            }
+        }
+    }
+}

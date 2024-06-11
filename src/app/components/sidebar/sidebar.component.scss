@@ -1,0 +1,78 @@
+@import 'src/scss/colors';
+@import 'src/scss/vars';
+
+.main-sidebar {
+    height: 100vh;
+    background-color: $lightGray1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: sticky;
+    top: 0;
+
+    @media #{$ipad} {
+        height: fit-content;
+        width: 100%;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        z-index: 100;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        top: unset;
+        padding: 0 1rem;
+    }
+
+    & > * {
+        width: 100%;
+        @media #{$ipad} {
+            width: auto;
+        }
+    }
+
+    .logo-sidebar {
+        padding: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all .2s;
+        @media #{$ipad} {
+            padding: 0;
+        }
+        &:hover {
+            background-color: $lightGray3;
+        }
+        img {
+            height: 54px;
+            width: auto;
+            @media #{$ipad} {
+                height: 32px;
+            }
+        }
+    }
+
+    .menu-sidebar {
+        margin-top: 2rem;
+        padding-left: 2rem;
+        @media #{$ipad} {
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    p.textbox {
+        padding: 2rem 1rem;
+        font-size: $px-12;
+        margin-top: auto;
+        text-align: center;
+        color: $mediumGray3;
+        @media #{$ipad} {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,73 @@
+@import 'src/scss/vars';
+@import 'src/scss/colors';
+
+.option-sidebar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: $px-16;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    overflow: hidden;
+    position: relative;
+    @media #{$ipad} {
+        border-radius: 0;
+    }
+
+    i {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+        position: relative;
+        transition: all .2s;
+        @media #{$ipad} {
+            margin-right: 0;
+        }
+    }
+
+    span {
+        position: relative;
+        transition: all .2s;
+        @media #{$ipad} {
+            display: none;
+        }
+    }
+
+    &:before {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 0%;
+        height: 100%;
+        background-color: $lightGray3;
+        transition: all .2s;
+    }
+
+    &:hover {
+        i {
+            font-weight: $mediumWeight;
+        }
+        span {
+            font-weight: $semiBoldWeight;
+        }
+        &:before {
+            width: 100%;
+        }
+    }
+
+    &.active {
+        i {
+            font-weight: bold;
+            color: $mainColor;
+        }
+        span {
+            font-weight: bold;
+            color: $mainColor;
+        }
+        &:before {
+            width: 100%;
+            background-color: white;
+        }
+    }
+}

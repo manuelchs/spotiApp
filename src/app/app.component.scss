@@ -1,0 +1,14 @@
+@import 'src/scss/vars';
+.main-wrapper {
+    display: grid;
+    grid-template-columns: 300px auto;
+    @media #{$ipad} {
+        display: block;
+    }
+
+    .main-content {
+        width: 100%;
+        max-width: 1920px;
+        margin: 0 auto;
+    }
+}

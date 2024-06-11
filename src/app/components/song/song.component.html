@@ -1,0 +1,10 @@
+<a class="song-wrapper" target="_blank" [href]="track.external_urls.spotify">
+    <div class="song-info">
+        <!-- <div class="number-song">1</div> -->
+        <div class="img-album">
+            <img [src]="track.album.images[0].url" alt="">
+        </div>
+        <p class="name-song">{{ track.name }}</p>
+    </div>
+    <button class="spotify-link"><span>Ver en Spotify</span><i class="fas fa-caret-right"></i></button>
+</a>

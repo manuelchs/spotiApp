@@ -1,0 +1,32 @@
+@import 'src/scss/vars';
+@import 'src/scss/colors';
+
+.main-input {
+    border-color: transparent;
+}
+
+.results {
+    button {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 1rem 0.5rem;
+        transition: all .2s;
+        &:hover {
+            background-color: $lightGray1;
+        }
+        .img-wrapper {
+            width: $px-64;
+            height: $px-64;
+            background-color: $lightGray2;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-right: 1rem;
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+}

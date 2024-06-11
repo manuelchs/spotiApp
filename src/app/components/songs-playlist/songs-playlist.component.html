@@ -1,0 +1,3 @@
+<div *ngIf="tracks" class="songs-playlist">
+    <app-song *ngFor="let track of tracks" [track]="track"></app-song>
+</div>

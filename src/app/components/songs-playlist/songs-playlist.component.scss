@@ -1,0 +1,9 @@
+.songs-playlist {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    h2 {
+        padding: 0 1rem;
+        text-align: center;
+    }
+}

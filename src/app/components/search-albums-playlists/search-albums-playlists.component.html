@@ -1,0 +1,23 @@
+<div class="search-wrapper">
+    <input #searchBox (input)="search(searchBox.value)" class="main-input" placeholder="Busca un álbum o una playlist" />
+    <div class="results" *ngIf="albums.length > 0 || playlists.length > 0">
+        <div *ngIf="playlists.length > 0" class="playlists">
+            <h3>Playlists</h3>
+            <button *ngFor="let item of playlists" (click)="selectItem(item)">
+                <div class="img-wrapper">
+                    <img [src]="item.images[0].url" alt="">
+                </div>
+                <span>{{ item.name }}</span>
+            </button>
+        </div>
+        <div *ngIf="albums.length > 0" class="albums">
+            <h3>Álbumes</h3>
+            <button *ngFor="let item of albums" (click)="selectItem(item)">
+                <div class="img-wrapper">
+                    <img [src]="item.images[0].url" alt="">
+                </div>
+                <span>{{ item.name }}</span>
+            </button>
+        </div>
+    </div>
+</div>

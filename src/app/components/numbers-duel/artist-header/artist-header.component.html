@@ -1,0 +1,6 @@
+<div *ngIf="artist" class="artist-header" [ngClass]="{'thin-version': thinVersion}" [ngStyle]="{ 'background-image': getBgImg() }">
+    <button class="toggle-animation" (click)="_clearArtist()"><i class="far fa-times"></i></button>
+    <div class="title-wrapper">
+        <a [href]="artist.external_urls.spotify" target="_blank">{{ artist.name }}</a>
+    </div>
+</div>

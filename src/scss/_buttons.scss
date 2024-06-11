@@ -1,0 +1,312 @@
+@import 'src/scss/mixins';
+.main-button {
+    background-color: $mainColor;
+    padding: 12px 2rem;
+    min-width: 200px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    box-shadow: 0px 3px 6px rgba(black, 0);
+    white-space: nowrap;
+    transition: all .2s;
+    width: fit-content;
+    border-radius: 1000px;
+    font-family: $mainFont;
+
+    // box-shadow: 0px 3px 6px rgba($mainColor, 0), 0px 0px 0px darken($mainColor, 5%) inset, 0px 0px 0px darken($mainColor, 5%) inset;
+
+    &.rounded {
+        border-radius: 1000px;
+    }
+
+    &.slim {
+        padding: 8px 2rem;
+    }
+
+    span, i {
+        @include selection-disabled;
+    }
+
+    span {
+        color: white;
+        z-index: 1;
+        position: relative;
+        font-weight: $regularWeight;
+        font-size: 20px;
+        letter-spacing: 2px;
+    }
+
+    &:before, &:after {
+        content: '';
+        position: absolute;
+        width: 0%;
+        height: 100%;
+        background-color: darken($mainColor, 5%);
+        transition: all .3s;
+    }
+
+    &:before {
+        left: -10%;
+        transform: skew(30deg);
+    }
+
+    &:after {
+        right: -10%;
+        transform: skew(30deg);
+    }
+
+    &:focus:not([disabled]),
+    &:active:not([disabled]) {
+        outline: none;
+        background-color: darken(darken($mainColor, 5%), 5%);
+        box-shadow: 0px 3px 6px rgba($mainColor, 1);
+        &:before, &:after {
+            background-color: darken(darken($mainColor, 5%), 5%);
+            width: 70%;
+        }
+    }
+
+    &:hover:not([disabled]) {
+        border-color: $mainColor;
+        transform: translateY(-4px);
+        box-shadow: 0px 3px 6px rgba($mainColor, 1);
+        &:before, &:after {
+            width: 70%;
+        }
+    }
+
+    &.icon {
+        i {
+            z-index: 1;
+            position: relative;
+            transition: all .2s;
+            color: white;
+            margin-bottom: 1px;
+            font-size: 18px;
+        }
+
+        &.icon-right {
+            i {
+                margin-left: 0.5rem;
+            }
+
+            &:hover {
+                i {
+                    // margin-left: 1rem;
+                }
+            }
+        }
+
+        &.icon-left {
+            i {
+                margin-right: 0.5rem;
+            }
+
+            &:hover {
+                i {
+                    // margin-right: 1rem;
+                }
+            }
+        }
+
+        &:hover {
+            i {
+                color: white;
+                transform: translateX(4px);
+            }
+        }
+
+        &.icon-2x {
+            font-size: 1.5rem;
+        }
+    }
+
+    &.ghost-button {
+        background-color: transparent;
+        border: 1px solid $mainColor;
+        box-shadow: 0px 3px 6px rgba($mainColor, 0), 0px 0px 0px darken($mainColor, 5%) inset, 0px 0px 0px darken($mainColor, 5%) inset;
+
+        span, i {
+            color: $mainColor;
+        }
+
+        &:hover {
+            span, i {
+                color: white;
+            }
+        }
+    }
+
+    &.white-button {
+        background-color: white;
+        box-shadow: 0px 3px 6px rgba($mainColor, 0), 0px 0px 0px $lightGray2 inset, -0px -0px 0px $lightGray2 inset;
+
+        &.ghost-button {
+            background-color: transparent;
+            border: 1px solid white;
+            &.big-button {
+                border-width: 2px;
+                span {
+                    font-size: 1.5rem;
+                }
+                i {
+                    font-size: 2rem;
+                }
+            }
+
+            span, i {
+                color: white;
+            }
+
+            &:hover, &:focus {
+                border-color: darken($mainColor, 5%);
+                span, i {
+                    color: white;
+                }
+            }
+        }
+
+        span,
+        i {
+            color: $mainColor;
+        }
+
+        &:hover,
+        &:focus {
+            box-shadow: 0px 3px 6px rgba($mainColor, 1);
+
+            span,
+            i {
+                color: white;
+            }
+        }
+    }
+
+    &.gradient-button {
+        background-image: linear-gradient(180deg, black, $mainColor)
+    }
+
+    &.red-button {
+        background-color: $red;
+        box-shadow: 0px 3px 6px rgba($red, 0), 0px 0px 0px $red inset, -0px -0px 0px $red inset;
+
+        &.ghost-button {
+            background-color: transparent;
+            border: 1px solid $red;
+
+            span,
+            i {
+                color: $red;
+            }
+
+            &:hover,
+            &:focus {
+                box-shadow: 0px 3px 6px rgba($red, 0.3), 30px 30px 0px $red inset, -30px -30px 0px $red inset;
+
+                span,
+                i {
+                    color: white;
+                }
+            }
+        }
+
+        span,
+        i {
+            color: white;
+        }
+
+        &:hover,
+        &:focus {
+            box-shadow: 0px 3px 6px rgba($red, 1), 30px 30px 0px darken($red, 5%) inset, -30px -30px 0px darken($red, 5%) inset;
+
+            span,
+            i {
+                color: white;
+            }
+        }
+    }
+
+    &.dark-button {
+        background-color: darken($mainColor, 5%);
+        &:before, &:after {
+            background-color: darken(darken($mainColor, 5%), 10%);
+        }
+        &:focus:not([disabled]),
+        &:active:not([disabled]) {
+            background-color: darken(darken($mainColor, 5%), 15%);
+            box-shadow: 0px 3px 6px rgba(darken($mainColor, 5%), 1);
+            &:before, &:after {
+                background-color: darken(darken($mainColor, 5%), 15%);
+            }
+        }
+
+        &:hover:not([disabled]) {
+            border-color: darken($mainColor, 5%);
+            box-shadow: 0px 3px 6px rgba(darken($mainColor, 5%), 1);
+        }
+    }
+
+    &:disabled,
+    &.disabled-button {
+        cursor: default;
+        background-color: $mediumGray1;
+        border-color: $mediumGray2;
+
+        span, i {
+            color: $mediumGray2;
+        }
+
+        &:hover {
+
+            span,
+            i {
+                color: $mediumGray2;
+            }
+        }
+    }
+
+    &.loading:disabled {
+        position: relative;
+        cursor: default;
+        background-color: $mainColor;
+        border-color: $mainColor;
+        i {
+            opacity: 0;
+        }
+
+        span {
+            color: transparent;
+            display: block;
+            position: relative;
+            &:after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                border: 3px solid $darkGray3;
+                border-color: white transparent white transparent;
+                animation: lds-dual-ring 1.2s linear infinite;
+            }
+        }
+
+    }
+}
+
+@keyframes lds-dual-ring {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}

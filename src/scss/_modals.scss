@@ -1,0 +1,151 @@
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(black, 0.7);
+	z-index: 20;
+	backdrop-filter: blur(5px);
+
+	.abs-close-button {
+		position: absolute;
+		top: 2rem;
+		right: 2rem;
+		cursor: pointer;
+		&:before {
+			content: '\f00d';
+			font-family: 'Font Awesome 6 Pro';
+			font-weight: 400;
+			color: black;
+			font-size: 2rem;
+			transition: all .2s;
+			display: block;
+		}
+		&:hover {
+			&:before {
+				color: $mainColor;
+				transform: scale(.8);
+			}
+		}
+		@media #{$ipad} {
+			top: 1rem;
+			right: 1rem;
+		}
+
+	}
+
+	.modal-content {
+		width: calc(100% - 1rem);
+		max-width: 800px;
+		background-color: white;
+		overflow: hidden;
+		border-radius: 16px;
+		overflow: hidden;
+        padding: 4rem;
+        position: relative;
+        animation: toggleAnimation .2s;
+
+		@media #{$ipad} {
+			max-height: calc(100% - 4rem);
+			overflow-y: scroll;
+			display: block;
+			display: block;
+            padding: 4rem 1rem;
+		}
+
+		.title-section {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 1rem 2rem;
+			border-bottom: 1px solid $lightGray2;
+			h4 {
+
+			}
+			button {
+				i {
+					font-size: 32px;
+				}
+			}
+		}
+
+		.content-section {
+			padding: 4rem;
+			@media #{$ipad} {
+				padding: 3rem 1rem;
+			}
+		}
+	}
+
+	.lateral-modal-content {
+		width: 90%;
+		background-color: $lightGray1;
+		height: 100%;
+		margin-left: auto;
+		max-width: 850px;
+		box-shadow: 0px 3px 6px rgba(black, 0.1);
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		overflow-x: hidden;
+		overflow-y: scroll;
+		animation: fromRight .3s;
+
+		.content-wrapper, .buttons-wrapper  {
+			padding: 1.5rem;
+			width: 100%;
+		}
+
+		.buttons-wrapper {
+			border-top: 1px solid white;
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+			margin-top: auto;
+
+			button {
+				margin-left: 1rem;
+			}
+		}
+
+		.content-wrapper {
+			padding: 2.5rem 1.5rem;
+			.header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 2.5rem;
+			}
+
+			.form-section {
+				background-color: white;
+				padding: 1.5rem;
+				border-radius: 8px;
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: 1rem;
+				margin-bottom: 1rem;
+				box-shadow: 0px 1px 1px rgba(black, 0.1);
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+}
+
+@keyframes fromRight {
+	from {
+		opacity: 0;
+		transform: translateX(100px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
