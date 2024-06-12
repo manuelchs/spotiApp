@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Chart, ChartOptions, ScatterControllerChartOptions } from 'chart.js';
+import Chart from 'chart.js/auto';
 import { AlbumWithTracks } from 'src/app/models/album.model';
 import { PlaylistWithTracks } from 'src/app/models/playlist.model';
 import { FeatureTrackAvailable, Track } from 'src/app/models/track.model';
@@ -62,7 +62,6 @@ export class TrackCollectionChartComponent implements OnInit, OnChanges {
                     datasets[index].data.push({ x: this.formatValue(track, 'x'), y: this.formatValue(track, 'y'), name: `${track.name} - ${track.artists[0].name}` });
                 });
             });
-            console.log(datasets);
             this.setGraph(datasets);
         }
     }

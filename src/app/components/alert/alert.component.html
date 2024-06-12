@@ -1,0 +1,7 @@
+<div *ngIf="alertsStack.length > 0" class="alerts-stack">
+    <div *ngFor="let alert of alertsStack; let i = index;" class="alert" [ngClass]="{'error': !alert.isSuccess}">
+        <button (click)="closeAlert(i)"><i class="fal fa-times"></i></button>
+        <h3>{{ alert.title }}</h3>
+        <p>{{ alert.message }}</p>
+    </div>
+</div>

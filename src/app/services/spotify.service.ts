@@ -7,6 +7,7 @@ import { Album, ExtendedAlbum } from '../models/album.model';
 import { Track } from '../models/track.model';
 import { Playlist, PlaylistsAlbumsResponse } from '../models/playlist.model';
 import { SpotifyUrlDetails } from '../models/otherSpotify.model';
+import { AlertsService } from './alerts.service';
 
 @Injectable({
     providedIn: 'root'
@@ -18,7 +19,7 @@ export class SpotifyService {
     private token: string = '';
     private apiUrl = 'https://api.spotify.com/v1';
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private alerts: AlertsService) {
         this.getAuthToken().subscribe(token => {
             this.token = token;
         });
@@ -49,7 +50,7 @@ export class SpotifyService {
         return this.http.get<any>('https://api.spotify.com/v1/search', { params: params, headers: this.getHeaders() }).pipe(
             map(response => response.artists.items),
             catchError((err) => {
-                console.log(err);
+                this.alerts.showAlertErrorDefault();
                 return of([])
             })
         );
@@ -61,7 +62,7 @@ export class SpotifyService {
         return this.http.get<PlaylistsAlbumsResponse>('https://api.spotify.com/v1/search', { params: params, headers: this.getHeaders() }).pipe(
             map(response => response),
             catchError((err) => {
-                console.log(err);
+                this.alerts.showAlertErrorDefault();
                 return of(null)
             })
         );
@@ -74,7 +75,10 @@ export class SpotifyService {
                 console.log(response);
                 return response;
             }),
-            catchError((err) => of(null))
+            catchError((err) => {
+                this.alerts.showAlertErrorDefault();
+                return of(null);
+            })
         );
     }
 
@@ -95,7 +99,7 @@ export class SpotifyService {
                 }
             }),
             catchError((err) => {
-                console.log(err);
+                this.alerts.showAlertErrorDefault();
                 return of([]);
             })
         );
@@ -126,6 +130,10 @@ export class SpotifyService {
                     return this.getAlbumsDetailsRecursive(ids, page, allAlbums);
                 else
                     return of(allAlbums)
+            }),
+            catchError(() => {
+                this.alerts.showAlertErrorDefault();
+                return of([]);
             })
         )
     }
@@ -143,7 +151,10 @@ export class SpotifyService {
             map(response => {
                 return response.tracks;
             }),
-            catchError(() => of([]))
+            catchError(() => {
+                this.alerts.showAlertErrorDefault();
+                return of([]);
+            })
         )
     }
 
@@ -200,8 +211,16 @@ export class SpotifyService {
                             ...track,
                             features: features[index]
                         }));
+                    }),
+                    catchError(() => {
+                        this.alerts.showAlertErrorDefault();
+                        return of(null);
                     })
                 );
+            }),
+            catchError(() => {
+                this.alerts.showAlertErrorDefault();
+                return of([]);
             })
         );
     }

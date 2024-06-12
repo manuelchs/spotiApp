@@ -1,0 +1,53 @@
+@import 'src/scss/colors';
+
+.alerts-stack {
+    position: fixed;
+    left: 2rem;
+    bottom: 2rem;
+    width: 100%;
+    max-width: 380px;
+    z-index: 21;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    .alert {
+        padding: 1rem;
+        background-color: $mainColor;
+        box-shadow: 0px 0px 8px rgba(black, 0.1);
+        position: relative;
+        border-radius: 8px;
+        margin-top: 1rem;
+        animation: alertAnimation .2s;
+        width: 100%;
+        &.error {
+            background-color: $errorColor;
+        }
+        button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            i {
+                font-size: 1.5rem;
+            }
+        }
+        * {
+            color: white;
+        }
+        p {
+            margin-top: 0.5rem;
+        }
+    }
+}
+
+@keyframes alertAnimation {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}

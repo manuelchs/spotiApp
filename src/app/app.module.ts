@@ -26,6 +26,7 @@ import { SelectorOfFeaturesComponent } from './components/track-analyzer/selecto
 import { TrackCollectionChartComponent } from './components/track-collection-chart/track-collection-chart.component';
 import { CollectionOfAlbumsAndPlaylistComponent } from './components/collection-of-albums-and-playlist/collection-of-albums-and-playlist.component';
 import { TrackAnalyzerInfoModalComponent } from './components/track-analyzer-info-modal/track-analyzer-info-modal.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
     declarations: [
@@ -49,7 +50,8 @@ import { TrackAnalyzerInfoModalComponent } from './components/track-analyzer-inf
         SelectorOfFeaturesComponent,
         TrackCollectionChartComponent,
         CollectionOfAlbumsAndPlaylistComponent,
-        TrackAnalyzerInfoModalComponent
+        TrackAnalyzerInfoModalComponent,
+        AlertComponent
     ],
     imports: [
         BrowserModule,
