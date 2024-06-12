@@ -1,5 +1,6 @@
 import { AlbumsResponse } from "./album.model";
 import { ExternalUrls, Image } from "./artist.model";
+import { Track } from "./track.model";
 
 export interface Owner {
     display_name: string;
@@ -45,4 +46,8 @@ export interface PlaylistsResponse {
 export interface PlaylistsAlbumsResponse {
     albums: AlbumsResponse;
     playlists: PlaylistsResponse;
+}
+
+export interface PlaylistWithTracks extends Playlist {
+    tracksWithFeatures: Track[];
 }

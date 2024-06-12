@@ -1,7 +1,0 @@
-<div *ngIf="item" class="item-wrapper">
-    <div class="img-wrapper">
-        <img [src]="item.images[0].url" alt="">
-    </div>
-    <span>{{ item.name }}</span>
-    <button (click)="clearItem.emit(); item = undefined;"><i class="far fa-times"></i></button>
-</div>

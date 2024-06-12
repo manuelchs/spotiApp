@@ -1,4 +1,5 @@
 import { Artist, ExternalUrls, Image } from './artist.model';
+import { Track } from './track.model';
 
 export interface Album {
     id: string;
@@ -11,34 +12,6 @@ export interface Album {
     popularity: number;
     href: string;
     uri: string;
-}
-
-interface Track {
-    artists: Artist[];
-    available_markets: string[];
-    disc_number: number;
-    duration_ms: number;
-    explicit: boolean;
-    external_urls: ExternalUrls;
-    href: string;
-    id: string;
-    is_playable: boolean;
-    linked_from: {
-        external_urls: ExternalUrls;
-        href: string;
-        id: string;
-        type: string;
-        uri: string;
-    };
-    restrictions: {
-        reason: string;
-    };
-    name: string;
-    preview_url: string;
-    track_number: number;
-    type: string;
-    uri: string;
-    is_local: boolean;
 }
 
 interface Restrictions {
@@ -109,6 +82,10 @@ export interface AlbumsResponse {
     offset: number;
     previous: string | null;
     total: number;
+}
+
+export interface AlbumWithTracks extends Album {
+    tracksWithFeatures: Track[];
 }
 
 export interface ExtendedAlbum extends Album, CompilationAlbum { }

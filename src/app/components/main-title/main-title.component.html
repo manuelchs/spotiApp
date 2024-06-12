@@ -1,4 +1,7 @@
-<h1>
-    <i class="fas fa-{{ icon }}"></i>
-    {{ title }}
-</h1>
+<div class="main-title">
+    <h1>
+        <i class="fas fa-{{ icon }}"></i>
+        {{ title }}
+    </h1>
+    <button *ngIf="questionButton" (click)="questionButtonClick.emit()"><i class="far fa-circle-question"></i></button>
+</div>

@@ -1,0 +1,6 @@
+<app-search-albums-playlists *ngIf="showSearch()" class="toggle-animation" (idItem)="getItem($event)" (blur)="isSearching = false;"></app-search-albums-playlists>
+<div *ngIf="!showSearch()" class="items-wrapper toggle-animation">
+    <app-item-handler *ngFor="let item of _collection" [item]="item" (deleteItem)="deleteItem($event)"></app-item-handler>
+    <app-item-handler *ngIf="loading"></app-item-handler>
+    <button class="add-collection" (click)="isSearching = true;"><span>Agregar collección</span><i class="far fa-plus"></i></button>
+</div>

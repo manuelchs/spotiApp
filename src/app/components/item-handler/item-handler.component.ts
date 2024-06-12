@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Album } from 'src/app/models/album.model';
-import { Playlist } from 'src/app/models/playlist.model';
+import { Album, AlbumWithTracks } from 'src/app/models/album.model';
+import { Playlist, PlaylistWithTracks } from 'src/app/models/playlist.model';
 
 @Component({
     selector: 'app-item-handler',
@@ -8,8 +8,8 @@ import { Playlist } from 'src/app/models/playlist.model';
     styleUrls: ['./item-handler.component.scss']
 })
 export class ItemHandlerComponent implements OnInit {
-    @Input() item?: Album | Playlist;
-    @Output() clearItem: EventEmitter<void> = new EventEmitter();
+    @Input() item?: AlbumWithTracks | PlaylistWithTracks;
+    @Output() deleteItem: EventEmitter<AlbumWithTracks | PlaylistWithTracks> = new EventEmitter();
 
     constructor() { }
 

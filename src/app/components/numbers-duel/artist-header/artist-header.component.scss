@@ -15,6 +15,13 @@ $transitionTime: 0.3s;
     align-items: center;
     transition: all $transitionTime;
     position: relative;
+    overflow: hidden;
+    &.home {
+        border-top-left-radius: 1rem;
+    }
+    &.away {
+        border-top-right-radius: 1rem;
+    }
     @media #{$ipad} {
         height: calc((100vw - 2rem) / 2);
     }
@@ -80,6 +87,14 @@ $transitionTime: 0.3s;
         }
         &:before {
             backdrop-filter: blur(4px);
+        }
+        &.home {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 1rem;
+        }
+        &.away {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 1rem;
         }
     }
 }

@@ -33,7 +33,9 @@ input {
     position: relative;
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
-    background-color: $lightGray1;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 1rem;
     @media #{$ipad} {
         width: calc(100vw - 2rem);
         margin-top: 0.5rem;

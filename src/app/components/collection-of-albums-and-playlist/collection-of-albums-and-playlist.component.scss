@@ -1,0 +1,37 @@
+@import 'src/scss/colors';
+@import 'src/scss/vars';
+
+app-search-albums-playlists {
+    display: block;
+}
+
+.items-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+
+    .add-collection {
+        font-size: 14px;
+        background-color: #F7F7F7;
+        height: 38px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 1rem;
+        border-radius: 0.5rem;
+        transition: all 0.2s;
+        span {
+            color: $mainColor;
+            font-weight: $mediumWeight;
+        }
+        i {
+            color: $mainColor;
+            margin-left: 0.5rem;
+        }
+        &:hover {
+            background-color: $lightGray3;
+        }
+    }
+}

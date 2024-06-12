@@ -1,0 +1,20 @@
+<div class="choose-relation-wrapper">
+    <div class="input-wrapper">
+        <label for="">Eje X</label>
+        <div class="main-select">
+            <select (change)="setFeatureSelected()" [(ngModel)]="featuresSelected[0]">
+                <option *ngFor="let feature of featuresAvailable" [ngValue]="feature">{{ feature.feature_label }}</option>
+            </select>
+            <div></div>
+        </div>
+    </div>
+    <div class="input-wrapper">
+        <label for="">Eje Y</label>
+        <div class="main-select">
+            <select (change)="setFeatureSelected()" [(ngModel)]="featuresSelected[1]">
+                <option *ngFor="let feature of featuresAvailable" [ngValue]="feature">{{ feature.feature_label }}</option>
+            </select>
+            <div></div>
+        </div>
+    </div>
+</div>

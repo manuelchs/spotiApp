@@ -1,2 +1,2 @@
 <app-artist-search [isHome]="isHome" *ngIf="!artist" (artistSelected)="artist = $event; artistSelected.emit($event)"></app-artist-search>
-<app-artist-header *ngIf="artist" [artist]="artist" (clearArtist)="artist = undefined; clearArtist.emit()"></app-artist-header>
+<app-artist-header *ngIf="artist" [artist]="artist" [isHome]="isHome" (clearArtist)="artist = undefined; clearArtist.emit()"></app-artist-header>

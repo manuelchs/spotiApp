@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WhyIsPopularComponent } from './why-is-popular.component';
+import { TrackAnalyzerComponent } from './track-analyzer.component';
 
-describe('WhyIsPopularComponent', () => {
-  let component: WhyIsPopularComponent;
-  let fixture: ComponentFixture<WhyIsPopularComponent>;
+describe('TrackAnalyzerComponent', () => {
+  let component: TrackAnalyzerComponent;
+  let fixture: ComponentFixture<TrackAnalyzerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WhyIsPopularComponent ]
+      declarations: [ TrackAnalyzerComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(WhyIsPopularComponent);
+    fixture = TestBed.createComponent(TrackAnalyzerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

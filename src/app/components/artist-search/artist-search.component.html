@@ -1,6 +1,6 @@
 <div class="search-wrapper">
     <input #searchBox (input)="search(searchBox.value)" class="main-input" placeholder="Busca un artista" />
-    <div class="artist-suggestions" [ngClass]="{'away': !isHome}">
+    <div *ngIf="artists.length > 0" class="artist-suggestions" [ngClass]="{'away': !isHome}">
         <button *ngFor="let artist of artists" (click)="onSelect(artist)">
             <div class="img-wrapper">
                 <img *ngIf="artist.images.length > 0" [src]="artist.images[0].url" alt="{{ artist.name }}" />

@@ -38,5 +38,16 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 2rem;
+        position: relative;
+        &:after {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            background-color: $mediumGray1;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
     }
 }

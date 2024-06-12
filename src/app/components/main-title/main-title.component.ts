@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
     selector: 'app-main-title',
@@ -9,6 +9,9 @@ export class MainTitleComponent implements OnInit {
 
     @Input() title!: string;
     @Input() icon!: string;
+    @Input() questionButton: boolean = false;
+
+    @Output() questionButtonClick: EventEmitter<void> = new EventEmitter();
 
     constructor() { }
 

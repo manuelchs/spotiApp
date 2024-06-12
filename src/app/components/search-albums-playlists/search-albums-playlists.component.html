@@ -1,8 +1,11 @@
 <div class="search-wrapper">
-    <input #searchBox (input)="search(searchBox.value)" class="main-input" placeholder="Busca un álbum o una playlist" />
+    <input #searchBox (input)="search(searchBox.value)" class="main-input" placeholder="Busca un álbum o una playlist, también puedes pegar una url de álbum o playlist" (blur)="onBlur()"/>
     <div class="results" *ngIf="albums.length > 0 || playlists.length > 0">
-        <div *ngIf="playlists.length > 0" class="playlists">
-            <h3>Playlists</h3>
+        <div class="tabs">
+            <button [ngClass]="{'active': tabActive === 'playlist'}" (click)="tabActive = 'playlist'">Playlists</button>
+            <button [ngClass]="{'active': tabActive === 'album'}" (click)="tabActive = 'album'">Albumes</button>
+        </div>
+        <div *ngIf="playlists.length > 0" class="section playlists" [ngClass]="{'active': tabActive === 'playlist'}">
             <button *ngFor="let item of playlists" (click)="selectItem(item)">
                 <div class="img-wrapper">
                     <img [src]="item.images[0].url" alt="">
@@ -10,8 +13,7 @@
                 <span>{{ item.name }}</span>
             </button>
         </div>
-        <div *ngIf="albums.length > 0" class="albums">
-            <h3>Álbumes</h3>
+        <div *ngIf="albums.length > 0" class="section albums" [ngClass]="{'active': tabActive === 'album'}">
             <button *ngFor="let item of albums" (click)="selectItem(item)">
                 <div class="img-wrapper">
                     <img [src]="item.images[0].url" alt="">

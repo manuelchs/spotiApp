@@ -1,0 +1,14 @@
+<div class="content-wrapper">
+    <div class="header-section">
+        <div class="title-section">
+            <app-main-title title="Análisis de tracks" icon="chart-scatter" [questionButton]="true" (questionButtonClick)="showInfo = true;"></app-main-title>
+            <p>Elige alguna playlist o álbum para comenzar a compararlos.</p>
+        </div>
+    </div>
+    <app-collection-of-albums-and-playlist (collection)="setCollection($event)"></app-collection-of-albums-and-playlist>
+    <div *ngIf="collection.length > 0" class="charts-section">
+        <app-track-collection-chart [tracksCollections]="collection"></app-track-collection-chart>
+    </div>
+</div>
+
+<app-track-analyzer-info-modal *ngIf="showInfo" (closeModal)="showInfo = false;"></app-track-analyzer-info-modal>

@@ -9,6 +9,7 @@ import { Artist } from 'src/app/models/artist.model';
 export class ArtistHeaderComponent implements OnInit {
 
     @Input() artist?: Artist;
+    @Input() isHome: boolean = true;
     @Output() clearArtist: EventEmitter<void> = new EventEmitter();
     thinVersion: boolean = false;
 
@@ -27,7 +28,7 @@ export class ArtistHeaderComponent implements OnInit {
     }
 
     checkThinVersion(): void {
-        this.thinVersion = window.scrollY > 120;
+        this.thinVersion = window.scrollY > 140;
     }
 
     _clearArtist(): void {

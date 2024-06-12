@@ -35,3 +35,5 @@ interface Features {
     time_signature: number;
 }
 
+export interface FeatureTrackAvailable { feature_label: string; feature_value: string; }
+

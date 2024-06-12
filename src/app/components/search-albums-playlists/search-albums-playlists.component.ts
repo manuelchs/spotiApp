@@ -9,7 +9,7 @@ import { SpotifyService } from 'src/app/services/spotify.service';
     styleUrls: ['./search-albums-playlists.component.scss']
 })
 export class SearchAlbumsPlaylistsComponent implements OnInit {
-
+    @Output() blur: EventEmitter<void> = new EventEmitter();
     @Output() idItem: EventEmitter<{ type: string; id: string; }> = new EventEmitter();
 
     response?: PlaylistsAlbumsResponse | null;
@@ -18,6 +18,8 @@ export class SearchAlbumsPlaylistsComponent implements OnInit {
 
     albums: AlbumSearchItem[] = [];
     playlists: Playlist[] = [];
+
+    tabActive: string = 'playlist';
 
     constructor(private spotifyService: SpotifyService) { }
 
@@ -53,6 +55,12 @@ export class SearchAlbumsPlaylistsComponent implements OnInit {
             type: item.type,
             id: item.id
         })
+    }
+
+    onBlur(): void {
+        setTimeout(() => {
+            this.blur.emit();
+        }, 300);
     }
 
 }

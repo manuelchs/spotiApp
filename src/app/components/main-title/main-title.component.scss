@@ -1,5 +1,27 @@
 @import 'src/scss/colors';
 
+.main-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    button {
+        margin-left: 1rem;
+        i {
+            font-size: 1.5rem;
+            color: $mediumGray2;
+            transition: all .2s;
+        }
+        &:hover i {
+            color: $black;
+        }
+    }
+}
+
 h1, i {
     color: $mainColor;
+}
+
+i {
+    margin-right: 1rem;
 }

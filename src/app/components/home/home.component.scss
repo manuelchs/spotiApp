@@ -1,4 +1,21 @@
 @import 'src/scss/colors';
+@import 'src/scss/vars';
+
+
+.content-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    @media #{$ipad} {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .description {
+        padding: 2rem;
+        border: 1px solid $lightGray3;
+        border-radius: 1rem;
+    }
+}
 
 ol {
     list-style-position: outside;

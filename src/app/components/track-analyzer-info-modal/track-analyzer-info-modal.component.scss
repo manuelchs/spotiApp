@@ -1,0 +1,16 @@
+.modal-content {
+    max-height: 90%;
+    overflow: hidden;
+    overflow-y: scroll;
+
+    p {
+        margin-top: 1rem;
+    }
+    ul {
+        margin-top: 2rem;
+        padding-left: 54px;
+        li {
+            margin-top: 1rem;
+        }
+    }
+}
