@@ -58,7 +58,7 @@ export class BarsDataComponent implements OnInit {
         let homeAlbumsStr: any = this.decimalPipe.transform(this.albumsHome.length, '1.0-0');
         let awayAlbumsStr: any = this.decimalPipe.transform(this.albumsAway.length, '1.0-0');
         this.comparisions.push({
-            title: 'Albumes publicados (Incluye albumes, singles y compilaciones)',
+            title: 'Albumes publicados',
             home: {
                 label: homeAlbumsStr,
                 value: this.albumsHome.length

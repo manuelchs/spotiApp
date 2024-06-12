@@ -3,10 +3,11 @@
 .main-title {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
 
     button {
         margin-left: 1rem;
+        margin-top: 11px;
         i {
             font-size: 1.5rem;
             color: $mediumGray2;
