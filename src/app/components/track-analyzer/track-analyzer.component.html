@@ -11,4 +11,6 @@
     </div>
 </div>
 
-<app-track-analyzer-info-modal *ngIf="showInfo" (closeModal)="showInfo = false;"></app-track-analyzer-info-modal>
+<app-main-modal *ngIf="showInfo" (closeModal)="showInfo = false;">
+    <app-track-analyzer-info-modal></app-track-analyzer-info-modal>
+</app-main-modal>

@@ -1,73 +1,70 @@
-<div class="modal" (mousedown)="$event.currentTarget === $event.target ? closeModal.emit() : ''">
-    <div class="modal-content">
-        <h1>Información necesaria</h1>
-        <p class="mt-1">Esta herramienta es útil para comparar 2 o más colecciones, escribe un término de búsqueda o pega un url de playlist o álbum y podrás ver en la gráfica los valores que elijas de las características que Spotify analiza de sus tracks. <br>A continuación, se listan las características y como puedes interpretarlas.</p>
-        <ul>
-            <li>
-                <h3>Bailabilidad</h3>
-                <p>Describe lo adecuada que es una pista para bailar, basada en una combinación de elementos musicales incluyendo
-                    tempo, estabilidad del ritmo, fuerza de los latidos y regularidad. Un valor más alto significa que la pista es
-                    más bailable.</p>
-            </li>
 
-            <li>
-                <h3>Energía</h3>
-                <p>Medida de intensidad y actividad. Normalmente, las pistas energéticas sienten un sonido rápido, fuerte y ruidoso.
-                    Por ejemplo, el death metal tiene alta energía, mientras que una sonata de Bach tiene baja energía.</p>
-            </li>
+<h1>Información necesaria</h1>
+<p class="mt-1">Esta herramienta es útil para comparar 2 o más colecciones, escribe un término de búsqueda o pega un url de playlist o álbum y podrás ver en la gráfica los valores que elijas de las características que Spotify analiza de sus tracks. <br>A continuación, se listan las características y como puedes interpretarlas.</p>
+<ul>
+    <li>
+        <h3>Bailabilidad</h3>
+        <p>Describe lo adecuada que es una pista para bailar, basada en una combinación de elementos musicales incluyendo
+            tempo, estabilidad del ritmo, fuerza de los latidos y regularidad. Un valor más alto significa que la pista es
+            más bailable.</p>
+    </li>
 
-            <li>
-                <h3>Tonalidad</h3>
-                <p>La clave musical de la pista. Usada con notación estándar de tono musical. Por ejemplo, C (Do), D (Re), E (Mi),
-                    etc.</p>
-            </li>
+    <li>
+        <h3>Energía</h3>
+        <p>Medida de intensidad y actividad. Normalmente, las pistas energéticas sienten un sonido rápido, fuerte y ruidoso.
+            Por ejemplo, el death metal tiene alta energía, mientras que una sonata de Bach tiene baja energía.</p>
+    </li>
 
-            <li>
-                <h3>Volumen (db)</h3>
-                <p>El volumen general de una pista en decibelios (dB). Los valores suelen oscilar entre -60 y 0 dB. Los valores más
-                    altos indican pistas más fuertes.</p>
-            </li>
+    <li>
+        <h3>Tonalidad</h3>
+        <p>La clave musical de la pista. Usada con notación estándar de tono musical. Por ejemplo, C (Do), D (Re), E (Mi),
+            etc.</p>
+    </li>
 
-            <li>
-                <h3>Modo</h3>
-                <p>La modalidad de la pista, mayor (1) o menor (0), que se refiere a la escala musical del contenido melódico.</p>
-            </li>
+    <li>
+        <h3>Volumen (db)</h3>
+        <p>El volumen general de una pista en decibelios (dB). Los valores suelen oscilar entre -60 y 0 dB. Los valores más
+            altos indican pistas más fuertes.</p>
+    </li>
 
-            <li>
-                <h3>Presencia de voz hablada</h3>
-                <p>Detecta la presencia de palabras habladas en una pista. Los valores más altos indican que la pista contiene
-                    principalmente palabras habladas.</p>
-            </li>
+    <li>
+        <h3>Modo</h3>
+        <p>La modalidad de la pista, mayor (1) o menor (0), que se refiere a la escala musical del contenido melódico.</p>
+    </li>
 
-            <li>
-                <h3>Sonido acústico</h3>
-                <p>Una medida de cuán acústica es una pista. Un valor de 1.0 representa una alta confianza en que la pista es
-                    acústica.</p>
-            </li>
+    <li>
+        <h3>Presencia de voz hablada</h3>
+        <p>Detecta la presencia de palabras habladas en una pista. Los valores más altos indican que la pista contiene
+            principalmente palabras habladas.</p>
+    </li>
 
-            <li>
-                <h3>Instrumentalidad</h3>
-                <p>Predice si una pista no contiene voces. Cuanto más cercana esté la puntuación a 1.0, más probable es que la pista
-                    sea instrumental.</p>
-            </li>
+    <li>
+        <h3>Sonido acústico</h3>
+        <p>Una medida de cuán acústica es una pista. Un valor de 1.0 representa una alta confianza en que la pista es
+            acústica.</p>
+    </li>
 
-            <li>
-                <h3>Viveza</h3>
-                <p>Detecta la presencia de una audiencia en la grabación. Los valores más altos representan una mayor probabilidad
-                    de que la pista fue grabada en vivo.</p>
-            </li>
+    <li>
+        <h3>Instrumentalidad</h3>
+        <p>Predice si una pista no contiene voces. Cuanto más cercana esté la puntuación a 1.0, más probable es que la pista
+            sea instrumental.</p>
+    </li>
 
-            <li>
-                <h3>Emotividad</h3>
-                <p>Una medida de la positividad musical que transmite una pista. Las pistas con valores altos suenan más positivas
-                    (alegres, felices), mientras que las pistas con valores bajos suenan más negativas (tristes, enojadas).</p>
-            </li>
+    <li>
+        <h3>Viveza</h3>
+        <p>Detecta la presencia de una audiencia en la grabación. Los valores más altos representan una mayor probabilidad
+            de que la pista fue grabada en vivo.</p>
+    </li>
 
-            <li>
-                <h3>Tempo</h3>
-                <p>El tempo global estimado de una pista en pulsaciones por minuto (BPM). En términos generales, la música rápida
-                    tiene un tempo alto y la música lenta tiene un tempo bajo.</p>
-            </li>
-        </ul>
-    </div>
-</div>
+    <li>
+        <h3>Emotividad</h3>
+        <p>Una medida de la positividad musical que transmite una pista. Las pistas con valores altos suenan más positivas
+            (alegres, felices), mientras que las pistas con valores bajos suenan más negativas (tristes, enojadas).</p>
+    </li>
+
+    <li>
+        <h3>Tempo</h3>
+        <p>El tempo global estimado de una pista en pulsaciones por minuto (BPM). En términos generales, la música rápida
+            tiene un tempo alto y la música lenta tiene un tempo bajo.</p>
+    </li>
+</ul>

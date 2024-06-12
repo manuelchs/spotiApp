@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-track-analyzer-info-modal',
@@ -6,8 +6,6 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
     styleUrls: ['./track-analyzer-info-modal.component.scss']
 })
 export class TrackAnalyzerInfoModalComponent implements OnInit {
-
-    @Output() closeModal: EventEmitter<void> = new EventEmitter();
 
     constructor() { }
 

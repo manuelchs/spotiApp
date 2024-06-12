@@ -1,7 +1,7 @@
 <div class="content-wrapper">
     <div class="header-section">
         <div class="title-section">
-            <app-main-title title="Duelo de números" icon="swords"></app-main-title>
+            <app-main-title title="Duelo de números" icon="swords" [questionButton]="true" (questionButtonClick)="showInfo = true;"></app-main-title>
             <p *ngIf="!artistHome || !artistAway" class="">Elige <b>dos artistas distintos</b> para comparar sus números, ¡veamos quién es más popular!</p>
             <p *ngIf="artistHome && artistAway" class="">Datos para el mercado mexicano (MX)</p>
         </div>
@@ -13,12 +13,15 @@
     </div>
     <div *ngIf="artistHome && artistAway && albumsHome && albumsAway" class="comparision-wrapper">
         <app-bars-data [artistHome]="artistHome" [artistAway]="artistAway" [albumsHome]="albumsHome" [albumsAway]="albumsAway"></app-bars-data>
-        <div class="playlist-section show-on-desktop">
+        <div class="playlist-section">
             <h2>Top 10</h2>
-            <div class="playlist-wrapper">
-                <app-songs-playlist [artistId]="artistHome.id"></app-songs-playlist>
-                <app-songs-playlist [artistId]="artistAway.id"></app-songs-playlist>
+            <div class="versus-wrapper">
+                <app-songs-playlist-versus [artistHomeId]="artistHome.id" [artistAwayId]="artistAway.id"></app-songs-playlist-versus>
             </div>
         </div>
     </div>
 </div>
+
+<app-main-modal *ngIf="showInfo" (closeModal)="showInfo = false;">
+    <app-duel-info-modal></app-duel-info-modal>
+</app-main-modal>

@@ -9,16 +9,11 @@ import { SpotifyService } from 'src/app/services/spotify.service';
 })
 export class SongsPlaylistComponent implements OnInit {
 
-    @Input() artistId!: string;
+    @Input() tracks?: Track[];
 
-    tracks?: Track[];
-
-    constructor(private spotifyService: SpotifyService) { }
+    constructor() { }
 
     ngOnInit(): void {
-        this.spotifyService.getArtistTopTracks(this.artistId).subscribe(tracks => {
-            this.tracks = tracks;
-        })
     }
 
 }

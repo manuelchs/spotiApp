@@ -9,11 +9,40 @@
     align-items: center;
     padding: 1rem;
     border-radius: 0.5rem;
+    overflow: hidden;
+
+    &.away {
+        flex-direction: row-reverse;
+        background-color: $lightGray1;
+        .song-info {
+            flex-direction: row-reverse;
+            .number-song {
+                margin-right: 0rem;
+                margin-left: 0.5rem;
+            }
+            .img-album {
+                margin-right: 0;
+                margin-left: 1rem;
+            }
+
+            .song-data {
+                .artist-album {
+                    justify-content: flex-end;
+                }
+            }
+        }
+    }
 
     .song-info {
         display: flex;
         justify-content: flex-start;
         align-items: center;
+        overflow: hidden;
+        .number-song {
+            margin-right: 0.5rem;
+            font-weight: bold;
+            color: $mediumGray4;
+        }
         .img-album {
             width: 64px;
             height: 64px;
@@ -22,15 +51,58 @@
             border-radius: 0.5rem;
             overflow: hidden;
             flex-shrink: 0;
+            @media #{$ipad} {
+                width: 48px;
+                height: 48px;
+            }
             img {
                 flex-shrink: 0;
+            }
+        }
+        .song-data {
+            width: 100%;
+            overflow: hidden;
+            .name-song {
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                text-align: left;
+                @media #{$ipad} {
+                    font-size: 14px;
+                }
+            }
+            .artist-album {
+                justify-content: flex-start;
+                align-items: center;
+                span {
+                    font-size: 12px;
+                    color: $mediumGray3;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    white-space: nowrap;
+                    &::after{
+                        content: '';
+                        background-color: $mediumGray3;
+                        width: 4px;
+                        height: 4px;
+                        border-radius: 50%;
+                        display: block;
+                        margin: 0 0.5rem;
+                    }
+                    &:last-child {
+                        &::after {
+                            display: none;
+                        }
+                    }
+                }
             }
         }
     }
 
     .spotify-link {
         position: relative;
-        margin-left: 1rem;
         transition: all .2s;
         span, i {
             color: $mainColor;
@@ -49,6 +121,10 @@
             top: 0px;
             z-index: 1;
             transition: all .2s;
+        }
+
+        @media #{$ipad} {
+            display: none;
         }
     }
 

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Track } from 'src/app/models/track.model';
+import { Track, VersusTrack } from 'src/app/models/track.model';
 
 @Component({
     selector: 'app-song',
@@ -8,11 +8,21 @@ import { Track } from 'src/app/models/track.model';
 })
 export class SongComponent implements OnInit {
 
-    @Input() track!: Track;
+    @Input() track?: VersusTrack;
+    @Input() listNumber?: number;
 
     constructor() { }
 
     ngOnInit(): void {
+    }
+
+    getNumber(): string {
+        if (this.listNumber) {
+            let num = this.listNumber - Math.floor(this.listNumber / 2)
+            return num.toString();
+        } else {
+            return '';
+        }
     }
 
 }

@@ -1,0 +1,28 @@
+@import 'src/scss/colors';
+@import 'src/scss/vars';
+
+.versus-desktop-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    @media #{$ipad} {
+        display: none;
+    }
+}
+
+app-songs-playlist {
+    display: block;
+    padding: 2rem;
+    border-right: 1px solid $mediumGray1;
+    width: 100%;
+    overflow: hidden;
+    &:last-child {
+        border-right: 0;
+    }
+}
+
+app-playlist-versus-mobile {
+    display: none;
+    @media #{$ipad} {
+        display: block;
+    }
+}

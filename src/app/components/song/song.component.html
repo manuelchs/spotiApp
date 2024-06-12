@@ -1,10 +1,15 @@
-<a class="song-wrapper" target="_blank" [href]="track.external_urls.spotify">
+<a class="song-wrapper" target="_blank" [href]="track ? track.external_urls.spotify : ''" [ngClass]="{'away': track && track.versusType === 'away'}">
     <div class="song-info">
-        <!-- <div class="number-song">1</div> -->
+        <div *ngIf="listNumber" class="number-song">{{ getNumber() }}</div>
         <div class="img-album">
-            <img [src]="track.album.images[0].url" alt="">
+            <img *ngIf="track" [src]="track.album.images[0].url" alt="">
         </div>
-        <p class="name-song">{{ track.name }}</p>
+        <div *ngIf="track" class="song-data">
+            <p class="name-song">{{ track.name }}</p>
+            <p class="artist-album show-on-mobile show-on-mobile-flex">
+                <span *ngFor="let artist of track.artists">{{ artist.name }}</span>
+            </p>
+        </div>
     </div>
-    <button class="spotify-link"><span>Ver en Spotify</span><i class="fas fa-caret-right"></i></button>
+    <button *ngIf="track" class="spotify-link"><span>Ver en Spotify</span><i class="fas fa-caret-right"></i></button>
 </a>

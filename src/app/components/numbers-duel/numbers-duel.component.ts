@@ -15,6 +15,8 @@ export class NumbersDuelComponent implements OnInit {
     albumsHome?: Album[];
     albumsAway?: Album[];
 
+    showInfo: boolean = false;
+
 
     constructor(private spotifyService: SpotifyService) { }
 

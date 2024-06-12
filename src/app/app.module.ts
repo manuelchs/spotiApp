@@ -27,6 +27,10 @@ import { TrackCollectionChartComponent } from './components/track-collection-cha
 import { CollectionOfAlbumsAndPlaylistComponent } from './components/collection-of-albums-and-playlist/collection-of-albums-and-playlist.component';
 import { TrackAnalyzerInfoModalComponent } from './components/track-analyzer-info-modal/track-analyzer-info-modal.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { DuelInfoModalComponent } from './components/duel-info-modal/duel-info-modal.component';
+import { MainModalComponent } from './component/main-modal/main-modal.component';
+import { SongsPlaylistVersusComponent } from './components/songs-playlist-versus/songs-playlist-versus.component';
+import { PlaylistVersusMobileComponent } from './components/playlist-versus-mobile/playlist-versus-mobile.component';
 
 @NgModule({
     declarations: [
@@ -51,7 +55,11 @@ import { AlertComponent } from './components/alert/alert.component';
         TrackCollectionChartComponent,
         CollectionOfAlbumsAndPlaylistComponent,
         TrackAnalyzerInfoModalComponent,
-        AlertComponent
+        AlertComponent,
+        DuelInfoModalComponent,
+        MainModalComponent,
+        SongsPlaylistVersusComponent,
+        PlaylistVersusMobileComponent
     ],
     imports: [
         BrowserModule,

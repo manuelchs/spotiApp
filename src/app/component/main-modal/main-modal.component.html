@@ -1,0 +1,6 @@
+<div class="modal" (mousedown)="$event.currentTarget === $event.target ? closeModal.emit() : ''">
+    <div class="modal-content">
+        <button class="abs-close-button" (click)="closeModal.emit()"></button>
+        <ng-content></ng-content>
+    </div>
+</div>

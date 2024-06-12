@@ -1,6 +1,11 @@
+@import 'src/scss/vars';
+
 .bars-section {
-    padding: 2rem;
+    padding: 4rem 2rem;
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
+    @media #{$ipad} {
+        padding: 2rem 0;
+    }
 }

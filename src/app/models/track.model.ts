@@ -14,6 +14,10 @@ export interface Track {
     features: Features;
 }
 
+export interface VersusTrack extends Track {
+    versusType?: 'home' | 'away';
+}
+
 interface Features {
     danceability: number;
     energy: number;
