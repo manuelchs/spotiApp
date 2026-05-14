@@ -196,26 +196,31 @@ export class SpotifyService {
 
         return this.http.get<any>(url, { headers: this.getHeaders() }).pipe(
             mergeMap((response: any) => {
-                const tracks = response.items.map((item: any) => ({
-                    id: item.track ? item.track.id : item.id,
-                    name: item.track ? item.track.name : item.name,
-                    artists: item.track ? item.track.artists : item.artists,
-                    popularity: item.track ? item.track.popularity : item.popularity,
-                }));
-                const trackIds = tracks.map((track: any) => track.id).join(',');
+                const rawItem = (item: any) => item.track ?? item;
+                const tracks = response.items
+                    .map((item: any) => rawItem(item))
+                    .filter((t: any) => t?.id)
+                    .map((t: any) => ({
+                        id: t.id,
+                        name: t.name,
+                        artists: t.artists ?? [],
+                        popularity: t.popularity ?? 0,
+                        duration_ms: t.duration_ms ?? 0,
+                    }));
+
+                if (!tracks.length) return of([]);
+
+                const trackIds = tracks.map((t: any) => t.id).join(',');
 
                 return this.http.get<any>(`${this.apiUrl}/audio-features?ids=${trackIds}`, { headers: this.getHeaders() }).pipe(
                     map((featuresResponse: any) => {
-                        const features = featuresResponse.audio_features;
-                        return tracks.map((track: any, index: any) => ({
+                        const features: any[] = featuresResponse.audio_features;
+                        return tracks.map((track: any, index: number) => ({
                             ...track,
-                            features: features[index]
+                            features: features[index] ?? null
                         }));
                     }),
-                    catchError(() => {
-                        this.alerts.showAlertErrorDefault();
-                        return of(null);
-                    })
+                    catchError(() => of(tracks.map((t: any) => ({ ...t, features: null }))))
                 );
             }),
             catchError(() => {

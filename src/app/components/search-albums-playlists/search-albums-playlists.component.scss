@@ -75,4 +75,16 @@
             display: block;
         }
     }
+
+    .no-results {
+        padding: 1rem;
+        color: $lightGray3;
+        text-align: center;
+        font-size: 0.875rem;
+    }
+
+    .count {
+        font-size: 0.75rem;
+        font-weight: 400;
+    }
 }

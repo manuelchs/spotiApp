@@ -10,7 +10,21 @@ export class SelectorOfFeaturesComponent implements OnInit {
 
     @Output() features: EventEmitter<FeatureTrackAvailable[]> = new EventEmitter();
 
-    featuresAvailable: FeatureTrackAvailable[] = [{ feature_label: 'Popularidad', feature_value: 'popularity' }, { feature_label: 'Bailabilidad', feature_value: 'danceability' }, { feature_label: 'Energía', feature_value: 'energy' }, { feature_label: 'Tonalidad', feature_value: 'key' }, { feature_label: 'Volumen (DB)', feature_value: 'loudness' }, { feature_label: 'Modo (mayor o menor)', feature_value: 'mode' }, { feature_label: 'Presencia de voz hablada', feature_value: 'speechiness' }, { feature_label: 'Sonido acústico', feature_value: 'acousticness' }, { feature_label: 'Instrumentalidad', feature_value: 'instrumentalness' }, { feature_label: 'Probabilidad de producción en vivo', feature_value: 'liveness' }, { feature_label: 'Emotividad', feature_value: 'valence' }, { feature_label: 'Tempo', feature_value: 'tempo' }];
+    featuresAvailable: FeatureTrackAvailable[] = [
+        { feature_label: 'Popularidad', feature_value: 'popularity' },
+        { feature_label: 'Duración (seg)', feature_value: 'duration_ms' },
+        { feature_label: 'Bailabilidad *', feature_value: 'danceability' },
+        { feature_label: 'Energía *', feature_value: 'energy' },
+        { feature_label: 'Tonalidad *', feature_value: 'key' },
+        { feature_label: 'Volumen (DB) *', feature_value: 'loudness' },
+        { feature_label: 'Modo (mayor o menor) *', feature_value: 'mode' },
+        { feature_label: 'Presencia de voz hablada *', feature_value: 'speechiness' },
+        { feature_label: 'Sonido acústico *', feature_value: 'acousticness' },
+        { feature_label: 'Instrumentalidad *', feature_value: 'instrumentalness' },
+        { feature_label: 'Probabilidad de producción en vivo *', feature_value: 'liveness' },
+        { feature_label: 'Emotividad *', feature_value: 'valence' },
+        { feature_label: 'Tempo *', feature_value: 'tempo' },
+    ];
 
     featuresSelected: FeatureTrackAvailable[] = [this.featuresAvailable[0], this.featuresAvailable[1]];
 

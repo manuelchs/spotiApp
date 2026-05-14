@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnDestroy, SimpleChanges, ViewChild } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { AlbumWithTracks } from 'src/app/models/album.model';
 import { PlaylistWithTracks } from 'src/app/models/playlist.model';
@@ -12,75 +12,69 @@ Chart.register(Colors);
     templateUrl: './track-collection-chart.component.html',
     styleUrls: ['./track-collection-chart.component.scss']
 })
-export class TrackCollectionChartComponent implements OnInit, OnChanges {
+export class TrackCollectionChartComponent implements AfterViewInit, OnChanges, OnDestroy {
 
     @Input() tracksCollections!: Array<AlbumWithTracks | PlaylistWithTracks>;
+    @ViewChild('chartCanvas') chartCanvas!: ElementRef<HTMLCanvasElement>;
 
     features: FeatureTrackAvailable[] = [];
-
     mainChart?: Chart<"scatter">;
+    private viewReady = false;
 
-    constructor() {
-    }
-
-    ngOnInit(): void {
+    ngAfterViewInit(): void {
+        this.viewReady = true;
+        this.tryRenderChart();
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        console.log('algo cambio');
-        if (changes['tracksCollections']) {
-            console.log('CAMBIO LA COLLECCION');
-            this.setDataGraph();
+        if (changes['tracksCollections'] && this.viewReady) {
+            this.tryRenderChart();
         }
     }
 
+    ngOnDestroy(): void {
+        this.mainChart?.destroy();
+        this.mainChart = undefined;
+    }
 
     setDataGraph(features?: FeatureTrackAvailable[]): void {
-        if (features || this.features.length > 0) {
-            if (features) {
-                this.features = features;
-            }
-            let datasets: any[] = [];
-            this.tracksCollections.forEach((collection, index) => {
-                if (index === 0) {
-                    datasets.push({
-                        backgroundColor: '#1DB955',
-                        label: collection.name,
-                        pointRadius: 5,
-                        pointHoverRadius: 10,
-                        data: []
-                    });
-                } else {
-                    datasets.push({
-                        label: collection.name,
-                        pointRadius: 5,
-                        pointHoverRadius: 10,
-                        data: []
-                    });
-                }
-                collection.tracksWithFeatures.forEach(track => {
-                    datasets[index].data.push({ x: this.formatValue(track, 'x'), y: this.formatValue(track, 'y'), name: `${track.name} - ${track.artists[0].name}` });
+        if (features) {
+            this.features = features;
+        }
+        this.tryRenderChart();
+    }
+
+    private tryRenderChart(): void {
+        if (!this.viewReady || this.features.length < 2 || !this.tracksCollections?.length) return;
+
+        const datasets: any[] = this.tracksCollections.map((collection, index) => {
+            const dataset: any = {
+                label: collection.name,
+                pointRadius: 5,
+                pointHoverRadius: 10,
+                data: []
+            };
+            if (index === 0) dataset.backgroundColor = '#1DB955';
+
+            (collection.tracksWithFeatures || []).forEach(track => {
+                if (!track) return;
+                dataset.data.push({
+                    x: this.formatValue(track, 'x'),
+                    y: this.formatValue(track, 'y'),
+                    name: `${track.name} - ${track.artists?.[0]?.name ?? ''}`
                 });
             });
-            this.setGraph(datasets);
-        }
+            return dataset;
+        });
+
+        this.setGraph(datasets);
     }
 
     formatValue(track: Track | any, axis: 'x' | 'y'): number {
-        console.log(this.features);
-        if (axis === 'x') {
-            if (this.features[0].feature_value === 'popularity') {
-                return track.popularity;
-            } else {
-                return track.features[this.features[0].feature_value];
-            }
-        } else {
-            if (this.features[1].feature_value === 'popularity') {
-                return track.popularity;
-            } else {
-                return track.features[this.features[1].feature_value];
-            }
-        }
+        const featureKey = axis === 'x' ? this.features[0].feature_value : this.features[1].feature_value;
+        if (featureKey === 'popularity') return track.popularity ?? 0;
+        if (featureKey === 'duration_ms') return Math.round((track.duration_ms ?? 0) / 1000);
+        return track.features?.[featureKey] ?? 0;
     }
 
     setGraph(datasets: any[]): void {
@@ -89,13 +83,10 @@ export class TrackCollectionChartComponent implements OnInit, OnChanges {
             this.mainChart.options = this.getChartOptions();
             this.mainChart.update();
         } else {
-            this.mainChart = new Chart('mainChart', {
+            this.mainChart = new Chart(this.chartCanvas.nativeElement, {
                 type: 'scatter',
-                data: {
-                    datasets: datasets
-                },
+                data: { datasets },
                 options: this.getChartOptions()
-
             });
         }
     }

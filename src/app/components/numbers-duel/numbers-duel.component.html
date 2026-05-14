@@ -1,7 +1,7 @@
 <div class="content-wrapper">
     <div class="header-section">
         <div class="title-section">
-            <app-main-title title="Duelo de números" icon="swords" [questionButton]="true" (questionButtonClick)="showInfo = true;"></app-main-title>
+            <app-main-title title="Duelo de números" icon="handshake" [questionButton]="true" (questionButtonClick)="showInfo = true;"></app-main-title>
             <p *ngIf="!artistHome || !artistAway" class="">Elige <b>dos artistas distintos</b> para comparar sus números, ¡veamos quién es más popular!</p>
             <p *ngIf="artistHome && artistAway" class="">Datos para el mercado mexicano (MX)</p>
         </div>

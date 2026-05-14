@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AlbumSearchItem } from 'src/app/models/album.model';
-import { PlaylistsAlbumsResponse, Playlist } from 'src/app/models/playlist.model';
+import { Playlist } from 'src/app/models/playlist.model';
 import { SpotifyService } from 'src/app/services/spotify.service';
 
 @Component({
@@ -12,8 +12,8 @@ export class SearchAlbumsPlaylistsComponent implements OnInit {
     @Output() blur: EventEmitter<void> = new EventEmitter();
     @Output() idItem: EventEmitter<{ type: string; id: string; }> = new EventEmitter();
 
-    response?: PlaylistsAlbumsResponse | null;
     loading: boolean = false;
+    searched: boolean = false;
     timeoutSearch?: NodeJS.Timeout;
 
     albums: AlbumSearchItem[] = [];
@@ -21,33 +21,41 @@ export class SearchAlbumsPlaylistsComponent implements OnInit {
 
     tabActive: string = 'playlist';
 
+    get hasResults(): boolean {
+        return this.albums.length > 0 || this.playlists.length > 0;
+    }
+
     constructor(private spotifyService: SpotifyService) { }
 
     ngOnInit(): void {
     }
 
     search(term: string): void {
-        this.loading = true;
         clearTimeout(this.timeoutSearch);
         const validUrl = this.spotifyService.isValidSpotifyUrl(term);
         if (validUrl) {
             if (validUrl.type === 'album' || validUrl.type === 'playlist') {
                 this.idItem.emit(validUrl);
             }
-        } else {
-            if (term === '') {
-                this.response = null;
-            } else {
-                this.timeoutSearch = setTimeout(() => {
-                    this.spotifyService.searchAlbumsAndPlaylist(term).subscribe((response) => {
-                        if (response) {
-                            this.albums = response.albums.items;
-                            this.playlists = response.playlists.items;
-                        }
-                    })
-                }, 300);
-            }
+            return;
         }
+        if (term === '') {
+            this.albums = [];
+            this.playlists = [];
+            this.searched = false;
+            return;
+        }
+        this.loading = true;
+        this.timeoutSearch = setTimeout(() => {
+            this.spotifyService.searchAlbumsAndPlaylist(term).subscribe((response) => {
+                this.loading = false;
+                this.searched = true;
+                if (response) {
+                    this.albums = response.albums.items.filter(item => item != null);
+                    this.playlists = response.playlists.items.filter(item => item != null);
+                }
+            });
+        }, 300);
     }
 
     selectItem(item: AlbumSearchItem | Playlist): void {

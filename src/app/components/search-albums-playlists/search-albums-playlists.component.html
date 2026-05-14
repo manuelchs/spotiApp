@@ -1,25 +1,39 @@
 <div class="search-wrapper">
     <input #searchBox (input)="search(searchBox.value)" class="main-input" placeholder="Busca un álbum o una playlist, también puedes pegar una url de álbum o playlist" (blur)="onBlur()"/>
-    <div class="results" *ngIf="albums.length > 0 || playlists.length > 0">
+    <div class="results" *ngIf="hasResults || searched" (mousedown)="$event.preventDefault()">
         <div class="tabs">
-            <button [ngClass]="{'active': tabActive === 'playlist'}" (click)="tabActive = 'playlist'">Playlists</button>
-            <button [ngClass]="{'active': tabActive === 'album'}" (click)="tabActive = 'album'">Albumes</button>
-        </div>
-        <div *ngIf="playlists.length > 0" class="section playlists" [ngClass]="{'active': tabActive === 'playlist'}">
-            <button *ngFor="let item of playlists" (click)="selectItem(item)">
-                <div class="img-wrapper">
-                    <img [src]="item.images[0].url" alt="">
-                </div>
-                <span>{{ item.name }}</span>
+            <button [ngClass]="{'active': tabActive === 'playlist'}" (click)="tabActive = 'playlist'">
+                Playlists <span class="count" *ngIf="playlists.length > 0">({{ playlists.length }})</span>
+            </button>
+            <button [ngClass]="{'active': tabActive === 'album'}" (click)="tabActive = 'album'">
+                Albumes <span class="count" *ngIf="albums.length > 0">({{ albums.length }})</span>
             </button>
         </div>
-        <div *ngIf="albums.length > 0" class="section albums" [ngClass]="{'active': tabActive === 'album'}">
-            <button *ngFor="let item of albums" (click)="selectItem(item)">
-                <div class="img-wrapper">
-                    <img [src]="item.images[0].url" alt="">
-                </div>
-                <span>{{ item.name }}</span>
-            </button>
+        <div class="section" [ngClass]="{'active': tabActive === 'playlist'}">
+            <ng-container *ngIf="playlists.length > 0; else noResultsPlaylist">
+                <button *ngFor="let item of playlists" (click)="selectItem(item)">
+                    <div class="img-wrapper">
+                        <img *ngIf="item.images.length > 0" [src]="item.images[0]?.url" alt="">
+                    </div>
+                    <span>{{ item.name }}</span>
+                </button>
+            </ng-container>
+            <ng-template #noResultsPlaylist>
+                <p class="no-results" *ngIf="searched">Sin resultados para playlists</p>
+            </ng-template>
+        </div>
+        <div class="section" [ngClass]="{'active': tabActive === 'album'}">
+            <ng-container *ngIf="albums.length > 0; else noResultsAlbum">
+                <button *ngFor="let item of albums" (click)="selectItem(item)">
+                    <div class="img-wrapper">
+                        <img *ngIf="item.images.length > 0" [src]="item.images[0]?.url" alt="">
+                    </div>
+                    <span>{{ item.name }}</span>
+                </button>
+            </ng-container>
+            <ng-template #noResultsAlbum>
+                <p class="no-results" *ngIf="searched">Sin resultados para álbumes</p>
+            </ng-template>
         </div>
     </div>
 </div>
